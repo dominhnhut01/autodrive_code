@@ -1,0 +1,2 @@
+#Add region coordinates by each line in the following order: x_min,y_min,x_max,y_max
+-95.99;41.12;-95.7;41.2

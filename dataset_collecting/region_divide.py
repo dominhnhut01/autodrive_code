@@ -1,57 +1,56 @@
 import numpy as np
 
 class region_divide:
-	def __init__(self, region_coor, returned_size):
-		#Enter the initial region's coordinate and returned size(width in longtitude and height in latitude)
-		self.region_coor = region_coor
-		self.returned_size = returned_size
+    def __init__(self, region_coor, returned_size):
+        #Enter the initial region's coordinate and returned size(width in longtitude and height in latitude)
+        self.region_coor = region_coor
+        self.returned_size = returned_size
+        self.rescaled_region = np.zeros(4)
 
-	def rescale(self):
-		#Rescale the region coordinates
-		self.rescaled_width = ((self.region_coor[1][0]-self.region_coor[0][0])//self.returned_size[0])*self.returned_size[0]
-		self.rescaled_height = ((self.region_coor[3][1]-self.region_coor[0][1])//self.returned_size[1])*self.returned_size[1]
-		#Assume the rescaled region is an rectangle ABCD
-		a = [self.region_coor[0][0], self.region_coor[0][1]]
-		b = [(self.region_coor[0][0]+self.rescaled_width),self.region_coor[0][1]]
-		c = [(self.region_coor[0][0]+self.rescaled_width),(self.region_coor[0][1]+self.rescaled_height)]
-		d = [self.region_coor[0][0],(self.region_coor[0][1]+self.rescaled_height)]
-		self.rescaled_region = [a,b,c,d]
-		return self.rescaled_region
+    def rescale(self):
+        #Rescale the region coordinates
+        self.rescaled_width = ((self.region_coor[2]-self.region_coor[0])//self.returned_size[0])*self.returned_size[0]
+        self.rescaled_height = ((self.region_coor[3]-self.region_coor[1])//self.returned_size[1])*self.returned_size[1]
+        
+        #Ensure height and width are positive
+        if self.rescaled_height<0:
+            self.rescaled_height=-self.rescaled_height
+        if self.rescaled_width<0:
+            self.rescaled_width=-self.rescaled_width
+        
+        #Assume the rescaled region is an rectangle ABCD
+        self.rescaled_region[0] = self.region_coor[0]
+        self.rescaled_region[1] = self.region_coor[1]
+        self.rescaled_region[2] = self.region_coor[0]+self.rescaled_width
+        self.rescaled_region[3] = self.region_coor[1]+self.rescaled_height
 
-	def divide(self):
-		#Divide the initial region's into smaller one. Return a np.array of coordinates of small regions
-		self.rescale()
-		column = self.rescaled_width//self.returned_size[0] #number of column
-		row = self.rescaled_height//self.returned_size[1] #number of row
-		
-		self.divided_region = np.zeros(row,column,4,2)
-		for y in range(row):
-			for x in range(column):
-				#Vertex A of each small region:
-				self.divided_region[y][x][0][0] = self.rescaled_region[0][0] + self.rescaled_width*x
-				self.divided_region[y][x][0][1] = self.rescaled_region[0][1] + self.rescaled_height*y
-				
-				#Vertex B of each small region:
-				self.divided_region[y][x][1][0] = self.rescaled_region[1][0] + self.rescaled_width*(x+1)
-				self.divided_region[y][x][1][1] = self.rescaled_region[1][1] + self.rescaled_height*y
-				
-				#Vertex C of each small region:
-				self.divided_region[y][x][2][0] = self.rescaled_region[2][0] + self.rescaled_width*(x+1)
-				self.divided_region[y][x][2][1] = self.rescaled_region[2][1] + self.rescaled_height*(y+1)
-				
-				#Vertex D of each small region:
-				self.divided_region[y][x][3][0] = self.rescaled_region[3][0] + self.rescaled_width*x
-				self.divided_region[y][x][3][1] = self.rescaled_region[3][1] + self.rescaled_height*(y+1)
+    def divide(self):
+        #Divide the initial region's into smaller one. Return a np.array of coordinates of small regions
+        self.rescale()
+        column = int(self.rescaled_width//self.returned_size[0]) #number of column
+        row = int(self.rescaled_height//self.returned_size[1]) #number of row
+        self.divided_region = np.zeros((row,column,4))
+        for y in range(row):
+            for x in range(column):
+                self.divided_region[y][x][0] = self.rescaled_region[0] + self.returned_size[0]*x
+                self.divided_region[y][x][1] = self.rescaled_region[1] + self.returned_size[1]*y
+                self.divided_region[y][x][2] = self.rescaled_region[0] + self.returned_size[0]*(x+1)
+                self.divided_region[y][x][3] = self.rescaled_region[1] + self.returned_size[1]*(y+1)   
+                print('{} rows {} columns'.format(y,x))
+        return self.divided_region
 
-		return self.divided_region
-
-
-
-
-
-
-
-
-
-
-
+'''
+coor = [6,4,9,7]
+obj = region_divide(coor,[1,1])
+returned_coor = obj.divide()
+a = returned_coor[0][0]
+b = returned_coor[0][1]
+c = returned_coor[0][2]
+d = returned_coor[1][0]
+e = returned_coor[1][1]
+f = returned_coor[1][2]
+g = returned_coor[2][0]
+h = returned_coor[2][1]
+i = returned_coor[2][2]
+print('done')
+'''
