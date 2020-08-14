@@ -18,7 +18,7 @@ class region_divide:
         if self.rescaled_width<0:
             self.rescaled_width=-self.rescaled_width
         
-        #Assume the rescaled region is an rectangle ABCD
+        #Append new coordinates to the list
         self.rescaled_region[0] = self.region_coor[0]
         self.rescaled_region[1] = self.region_coor[1]
         self.rescaled_region[2] = self.region_coor[0]+self.rescaled_width
