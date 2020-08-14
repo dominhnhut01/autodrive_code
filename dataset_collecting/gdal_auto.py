@@ -1,7 +1,8 @@
 import os
 import numpy as np
-
+#direc is directory for input dataset folder 
 direc = "./input"
+#out_direc is directory for output folder
 out_direc = "~/Yours/Projects/SDC/dataset/output"
 num = 1
 for fil in os.listdir(direc):
