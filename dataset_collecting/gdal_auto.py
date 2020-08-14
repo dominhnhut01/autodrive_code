@@ -1,9 +1,9 @@
 import os
 import numpy as np
 #direc is directory for input dataset folder 
-direc = "./input"
+direc = input("Input your input directory: ")
 #out_direc is directory for output folder
-out_direc = "~/Yours/Projects/SDC/dataset/output"
+out_direc = input("Input your output directory: ")
 num = 1
 for fil in os.listdir(direc):
     name = fil[4:-4]
