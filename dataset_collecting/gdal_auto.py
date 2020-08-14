@@ -10,12 +10,12 @@ num = 1
 for fil in os.listdir(direc):
     name = fil[4:-4]
     print(name)
-    os.system("gdal_translate -of JPEG -scale -co worldfile=yes ./{}/{} {}/{}.jpg".format(direc,fil,out_direc,name))
+    os.system("gdal_translate -of JPEG -scale -co worldfile=yes {}/{} {}/{}.jpg".format(direc,fil,out_direc,name))
     num = num+1
 
 num_del = 1
-for fil in os.listdir("./{}".format(out_direc)):
+for fil in os.listdir("{}".format(out_direc)):
     if (fil[-3:]!="jpg"):
-        os.system("rm -r ./{}/{}".format(out_direc,fil))
+        os.system("rm -r {}/{}".format(out_direc,fil))
 
 
