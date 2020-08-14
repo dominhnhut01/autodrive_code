@@ -29,28 +29,14 @@ class region_divide:
         self.rescale()
         column = int(self.rescaled_width//self.returned_size[0]) #number of column
         row = int(self.rescaled_height//self.returned_size[1]) #number of row
-        self.divided_region = np.zeros((row,column,4))
+        self.divided_region = np.zeros((row*column,4))
+        coor_num = 0
         for y in range(row):
             for x in range(column):
-                self.divided_region[y][x][0] = self.rescaled_region[0] + self.returned_size[0]*x
-                self.divided_region[y][x][1] = self.rescaled_region[1] + self.returned_size[1]*y
-                self.divided_region[y][x][2] = self.rescaled_region[0] + self.returned_size[0]*(x+1)
-                self.divided_region[y][x][3] = self.rescaled_region[1] + self.returned_size[1]*(y+1)   
-                print('{} rows {} columns'.format(y,x))
+                self.divided_region[coor_num][0] = self.rescaled_region[0] + self.returned_size[0]*x
+                self.divided_region[coor_num][1] = self.rescaled_region[1] + self.returned_size[1]*y
+                self.divided_region[coor_num][2] = self.rescaled_region[0] + self.returned_size[0]*(x+1)
+                self.divided_region[coor_num][3] = self.rescaled_region[1] + self.returned_size[1]*(y+1)   
+                print('{} rows {} columns'.format(y+1,x+1))
+                coor_num +=1
         return self.divided_region
-
-'''
-coor = [6,4,9,7]
-obj = region_divide(coor,[1,1])
-returned_coor = obj.divide()
-a = returned_coor[0][0]
-b = returned_coor[0][1]
-c = returned_coor[0][2]
-d = returned_coor[1][0]
-e = returned_coor[1][1]
-f = returned_coor[1][2]
-g = returned_coor[2][0]
-h = returned_coor[2][1]
-i = returned_coor[2][2]
-print('done')
-'''
