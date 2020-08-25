@@ -5,7 +5,7 @@ import os
 def export_tif():
     
     tif_dir = []
-    folder = 'E:/College projects/Autodrive car/autodrive_code/dataset_collecting/dataset/input_tif'
+    folder = 'E:/college_projects/autodrive_car/dataset/input_tif/NYC'
     for filename in os.listdir(folder):
         if ".tif" in filename:
             filename = os.path.join(folder,filename)
@@ -71,7 +71,7 @@ def export_tif():
                 # Create gtif file 
                 driver = gdal.GetDriverByName("GTiff")
 
-                output_file = 'E:/College projects/Autodrive car/autodrive_code/dataset_collecting/dataset/output_tif/img_{}.tif'.format(num)
+                output_file = 'E:/college_projects/autodrive_car/dataset/output_tif/raw_dataset/NYC/NYC_{}.tif'.format(num)
 
                 dst_ds = driver.Create(output_file, 
                                        new_cols, 
