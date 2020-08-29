@@ -3,7 +3,7 @@ from region_divide import region_divide
 import os
 
 def export_tif():
-    
+#Export small tiff files from large tiff
     tif_dir = []
     folder = 'E:/college_projects/autodrive_car/dataset/input_tif/NYC'
     for filename in os.listdir(folder):
