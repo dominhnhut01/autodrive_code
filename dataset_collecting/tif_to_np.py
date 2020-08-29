@@ -1,13 +1,14 @@
+from libtiff import TIFF
 import numpy as np
-import PIL
-from PIL import Image
-import matplotlib.pyplot as plt
-
-img = Image.open('E:/college_projects/autodrive_car/dataset/output_tif/street_centerline_NYC_102.tif')
-
-img_arr = np.array(img)
-
-
-print(img_arr.shape[0],img_arr.shape[1])
-print('Done')
+import os
+direc = input("Enter input data directory here: ")
+out_direc = input("Enter output data directory here: ")
+for file in os.listdir(direc):
+	if (file[-3:]=="tif"):
+		name = file[0:-4]
+		tif = TIFF.open('{}/{}'.format(direc, file))
+		image = tif.read_image()
+		np.save('{}/{}.npy'.format(out_direc,name),image)
+	else:
+		continue
 
