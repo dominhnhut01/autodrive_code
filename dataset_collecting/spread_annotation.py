@@ -121,8 +121,8 @@ for y in range(imap.shape[0]):
 for y in range(imap.shape[0]):
     for x in range(imap.shape[1]):
         if (imap[y][x] in container or imap[y][x]==2):
-            imap[y][x]=2
+            imap[y][x]=255
         else:
-            imap[y][x]=1
+            imap[y][x]=0
 print(imap)
 print(container)
