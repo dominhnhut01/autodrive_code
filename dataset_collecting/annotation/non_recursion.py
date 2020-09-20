@@ -74,7 +74,6 @@ file_direc = os.listdir(data_input)
 
 for file in file_direc:
     name = file[:-4]
-    imap=0
     imap = np.load(data_input+"/"+file)
     length = imap.shape[1]
     width = imap.shape[0]
