@@ -4,7 +4,7 @@ import sys
 from PIL import Image
 import os
 sys.setrecursionlimit(25000)
-
+'''
 imap = np.array([[0,0,1,0,2,0,1,0,0],
                  [0,0,1,0,2,0,1,0,0],
                  [1,1,1,0,2,0,1,0,0],
@@ -13,7 +13,7 @@ imap = np.array([[0,0,1,0,2,0,1,0,0],
                  [0,0,0,0,2,1,0,0,0],
                  [1,1,0,0,2,1,0,0,0],
                  [0,1,0,0,2,1,0,0,0]])
-
+'''
 def check_validity(x,y):
     if (x<=-1 or y<=-1 or x>=length or y>=width):
         return 0
@@ -67,16 +67,14 @@ def spr2(x,y):
         if (imap[y][x] not in container and (imap[y][x]!=2 and imap[y][x]!=1)):
             container.append(imap[y][x])
         return
-data_input = "./street_data_np - Copy"
-data_output = "./fixed_array"
-file_direc = os.listdir(data_input)
+#data_input = "./street_data_np - Copy"
+#data_output = "./fixed_array"
+#file_direc = os.listdir(data_input)
 
 
+number="207"
+imap = np.load("./array/street_data_"+number+".npy")
 
-imap = np.zeros((600,600))
-imap[3:4]=1
-imap[200:201]=2
-imap[300:301]=1
 length = imap.shape[1]
 width = imap.shape[0]
 check = np.zeros((width,length))

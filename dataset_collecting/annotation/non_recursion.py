@@ -67,7 +67,7 @@ def spr2(x,y):
         if (imap[y][x] not in container and (imap[y][x]!=2 and imap[y][x]!=1)):
             container.append(imap[y][x])
         return
-data_input = "./street_data_np - Copy"
+data_input = "./array"
 data_output = "./fixed_array"
 file_direc = os.listdir(data_input)
 
@@ -100,4 +100,4 @@ for file in file_direc:
             else:
                 imap[y][x]=0
 
-    print (imap)
+    np.save(data_output+"/"+name+".npy",imap)
