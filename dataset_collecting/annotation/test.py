@@ -69,7 +69,7 @@ def spr2(x,y):
         return
 data_input = "./street_data_np - Copy"
 data_output = "./fixed_array"
-file_direc = os.listdir(data_input)
+#file_direc = os.listdir(data_input)
 
 
 
@@ -77,6 +77,7 @@ imap = np.zeros((600,600))
 imap[3:4]=1
 imap[200:201]=2
 imap[300:301]=1
+imap = np.load('E:/college_projects/autodrive_car/dataset/output_tif/NYC/street_data_np/street_data_15.npy')
 length = imap.shape[1]
 width = imap.shape[0]
 check = np.zeros((width,length))

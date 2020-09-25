@@ -106,6 +106,7 @@ def spr2(x,y):
 
 container=[]
 global_val = 3
+imap = np.load("E:/college_projects/autodrive_car/dataset/output_tif/NYC/street_data_np/street_data_20.npy")
 for y in range(imap.shape[0]):
     for x in range(imap.shape[1]):
         if (imap[y][x]==0):
@@ -124,5 +125,5 @@ for y in range(imap.shape[0]):
             imap[y][x]=255
         else:
             imap[y][x]=0
-print(imap)
-print(container)
+#print(imap)
+#print(container)

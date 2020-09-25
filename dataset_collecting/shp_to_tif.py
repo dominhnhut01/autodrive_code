@@ -3,29 +3,28 @@ from osgeo import ogr, gdal
 import subprocess
 import os
 
-def shp_to_tif():
+def shp_to_tif(shp_dir,ref_dir,out_dir):
 	ref_dir_list = []
-	folder = 'E:/college_projects/autodrive_car/dataset/output_tif/raw_dataset/NYC'
-	for filename in os.listdir(folder):
+	for filename in os.listdir(ref_dir):
 	    if ".tif" in filename:
 	        ref_dir_list.append(filename)
 	    else:
 	        continue
-	InputVector = 'E:/college_projects/autodrive_car/dataset/NYC_citymap/citymap_streetcenterlines_v1.shp'
+	shp_dir = 'E:/college_projects/autodrive_car/dataset/NYC_citymap/citymap_streetcenterlines_v1.shp'
 	for ref_file_name in ref_dir_list:
 		try:
-			ref_dir = os.path.join(folder,ref_file_name)
-			OutputImage = 'E:/college_projects/autodrive_car/dataset/output_tif/street_centerline/street_centerline_{}'.format(ref_file_name)
+			ref_file_dir = os.path.join(ref_dir,ref_file_name)
+			OutputImage = '{}/street_line_{}'.format(out_dir,ref_file_name)
 
 			gdalformat = 'GTiff'
 			datatype = gdal.GDT_Byte
 			burnVal = 1 #value for the output image pixels
 			##########################################################
 			# Get projection info from reference image
-			Image = gdal.Open(ref_dir, gdal.GA_ReadOnly)
+			Image = gdal.Open(ref_file_dir, gdal.GA_ReadOnly)
 
 			# Open Shapefile
-			Shapefile = ogr.Open(InputVector)
+			Shapefile = ogr.Open(shp_dir)
 			Shapefile_layer = Shapefile.GetLayer()
 
 			# Rasterise
@@ -52,5 +51,8 @@ def shp_to_tif():
 			continue
 
 if __name__ == '__main__':
-	shp_to_tif()
+	shp_dir = input("Enter shp files directory here: ")
+	ref_dir = input("Enter reference geotiff files directory here: ")
+	out_dir = input("Enter output files directory here: ")
+	shp_to_tif(shp_dir,ref_dir,out_dir)
 	print("Done.")

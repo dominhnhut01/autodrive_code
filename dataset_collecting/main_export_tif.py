@@ -2,13 +2,12 @@ from osgeo import gdal, osr
 from region_divide import region_divide
 import os
 
-def export_tif():
+def export_tif(input_dir,output_dir):
 #Export small tiff files from large tiff
     tif_dir = []
-    folder = 'E:/college_projects/autodrive_car/dataset/input_tif/NYC'
-    for filename in os.listdir(folder):
+    for filename in os.listdir(input_dir):
         if ".tif" in filename:
-            filename = os.path.join(folder,filename)
+            filename = os.path.join(input_dir,filename)
             tif_dir.append(filename)
         else:
             continue
@@ -71,7 +70,7 @@ def export_tif():
                 # Create gtif file 
                 driver = gdal.GetDriverByName("GTiff")
 
-                output_file = 'E:/college_projects/autodrive_car/dataset/output_tif/raw_dataset/NYC/NYC_{}.tif'.format(num)
+                output_file = '{}/NYC_{}.tif'.format(output_dir,num)
 
                 dst_ds = driver.Create(output_file, 
                                        new_cols, 
@@ -101,5 +100,7 @@ def export_tif():
         dst_ds = None
 
 if __name__ == '__main__':
-	export_tif()
-	print('End of program')
+    input_dir = input("Enter input data directory here: ")
+    output_dir = input("Enter output data directory here: ")
+    export_tif(input_dir,output_dir)
+    print('End of program')

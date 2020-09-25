@@ -27,9 +27,11 @@ def merge_npy(out_direc):
 		st_line = np.load('{}/street_line_NYC_{}.npy'.format(out_direc,i+1))
 		st_centerline = 2*np.load('{}/street_centerline_NYC_{}.npy'.format(out_direc,i+1))
 		st_data = st_line+st_centerline
-		for pixel in st_data[0]:
-			if pixel >2:
-				pixel = 2
+		width,length=st_data.shape
+		for y in range(width):
+			for x in range(length):
+				if st_data[y][x] >2:
+					st_data[y][x]=2
 		
 		np.save('{}/street_data_{}.npy'.format(out_direc,i+1),st_data)
 		
