@@ -67,8 +67,13 @@ def spr2(x,y):
         if (imap[y][x] not in container and (imap[y][x]!=2 and imap[y][x]!=1)):
             container.append(imap[y][x])
         return
+<<<<<<< HEAD
 data_input = input("Input your input folder directory: ")
 data_output = input("Input your output folder directory: ")
+=======
+data_input = "./array"
+data_output = "./fixed_array"
+>>>>>>> e906a186ebf7471c54fa60a4b2056856306f4f40
 file_direc = os.listdir(data_input)
 
 
@@ -100,4 +105,4 @@ for file in file_direc:
             else:
                 imap[y][x]=0
 
-    print (imap)
+    np.save(data_output+"/"+name+".npy",imap)
