@@ -1,4 +1,5 @@
 import os
+# download and install gdal for gdal_auto.py: https://mothergeo-py.readthedocs.io/en/latest/development/how-to/gdal-ubuntu-pkg.html
 
 #direc = "./input"
 #out_direc = "~/Yours/Projects/SDC/dataset/output"
