@@ -31,7 +31,8 @@ def shp_to_tif(shp_dir,ref_dir,out_dir):
 			print("Rasterising shapefile...")
 			Output = gdal.GetDriverByName(gdalformat).Create(OutputImage, Image.RasterXSize, Image.RasterYSize, 1, datatype, options=['COMPRESS=DEFLATE'])
 			Output.SetProjection(Image.GetProjectionRef())
-			Output.SetGeoTransform(Image.GetGeoTransform()) 
+			Output.SetGeoTransform(Image.GetGeoTransform())
+
 
 			# Write data to band 1
 			Band = Output.GetRasterBand(1)
