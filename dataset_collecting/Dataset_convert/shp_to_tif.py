@@ -10,11 +10,10 @@ def shp_to_tif(shp_dir,ref_dir,out_dir):
 	        ref_dir_list.append(filename)
 	    else:
 	        continue
-	shp_dir = 'E:/college_projects/autodrive_car/dataset/NYC_citymap/citymap_streetcenterlines_v1.shp'
 	for ref_file_name in ref_dir_list:
 		try:
 			ref_file_dir = os.path.join(ref_dir,ref_file_name)
-			OutputImage = '{}/street_line_{}'.format(out_dir,ref_file_name)
+			OutputImage = '{}/street_centerline_{}'.format(out_dir,ref_file_name)
 
 			gdalformat = 'GTiff'
 			datatype = gdal.GDT_Byte
