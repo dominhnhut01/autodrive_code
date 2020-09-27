@@ -4,7 +4,7 @@ import sys
 from PIL import Image
 import os
 sys.setrecursionlimit(25000)
-
+'''
 imap = np.array([[0,0,1,0,2,0,1,0,0],
                  [0,0,1,0,2,0,1,0,0],
                  [1,1,1,0,2,0,1,0,0],
@@ -13,6 +13,7 @@ imap = np.array([[0,0,1,0,2,0,1,0,0],
                  [0,0,0,0,2,1,0,0,0],
                  [1,1,0,0,2,1,0,0,0],
                  [0,1,0,0,2,1,0,0,0]])
+'''
 
 def check_validity(x,y):
     if (x<=-1 or y<=-1 or x>=length or y>=width):

@@ -24,8 +24,8 @@ def merge_npy(out_direc):
 	file_num = len(os.listdir(out_direc))
 	fn_pair = []
 	for i in range(int(file_num/2)):
-		st_line = np.load('{}/street_line_NYC_NYC_{}.npy'.format(out_direc,i+1))
-		st_centerline = 2*np.load('{}/street_centerline_NYC_NYC_{}.npy'.format(out_direc,i+1))
+		st_line = np.load('{}/street_line_NYC_{}.npy'.format(out_direc,i+1))
+		st_centerline = 2*np.load('{}/street_centerline_NYC_{}.npy'.format(out_direc,i+1))
 		st_data = st_line+st_centerline
 		width,length=st_data.shape
 		for y in range(width):
@@ -35,8 +35,8 @@ def merge_npy(out_direc):
 		
 		np.save('{}/street_data_{}.npy'.format(out_direc,i+1),st_data)
 		
-		os.remove('{}/street_line_NYC_NYC_{}.npy'.format(out_direc,i+1))
-		os.remove('{}/street_centerline_NYC_NYC_{}.npy'.format(out_direc,i+1))
+		os.remove('{}/street_line_NYC_{}.npy'.format(out_direc,i+1))
+		os.remove('{}/street_centerline_NYC_{}.npy'.format(out_direc,i+1))
 if __name__ == '__main__':
 	st_line_direc = input("Enter street line directory here: ")
 	st_centerline_direc = input("Enter street centerline directory here: ")

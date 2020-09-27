@@ -13,7 +13,7 @@ def shp_to_tif(shp_dir,ref_dir,out_dir):
 	for ref_file_name in ref_dir_list:
 		try:
 			ref_file_dir = os.path.join(ref_dir,ref_file_name)
-			OutputImage = '{}/street_centerline_NYC_{}'.format(out_dir,ref_file_name)
+			OutputImage = '{}/street_centerline_{}'.format(out_dir,ref_file_name)
 
 			gdalformat = 'GTiff'
 			datatype = gdal.GDT_Byte
