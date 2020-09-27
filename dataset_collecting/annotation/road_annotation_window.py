@@ -14,10 +14,7 @@ imap = np.array([[0,0,1,0,2,0,1,0,0],
                  [1,1,0,0,2,1,0,0,0],
                  [0,1,0,0,2,1,0,0,0]])
 '''
-<<<<<<< HEAD:dataset_collecting/annotation/elimination2.py
-=======
 
->>>>>>> 73fdeab2ec51bdcdded74fe404ee94e5ecee479d:dataset_collecting/annotation/non_recursion.py
 def check_validity(x,y):
     if (x<=-1 or y<=-1 or x>=length or y>=width):
         return 0
