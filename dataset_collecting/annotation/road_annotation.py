@@ -4,7 +4,7 @@ import sys
 from PIL import Image
 import os
 sys.setrecursionlimit(25000)
-
+'''
 imap = np.array([[0,0,1,0,2,0,1,0,0],
                  [0,0,1,0,2,0,1,0,0],
                  [1,1,1,0,2,0,1,0,0],
@@ -13,7 +13,7 @@ imap = np.array([[0,0,1,0,2,0,1,0,0],
                  [0,0,0,0,2,1,0,0,0],
                  [1,1,0,0,2,1,0,0,0],
                  [0,1,0,0,2,1,0,0,0]])
-
+'''
 def check_validity(x,y):
     if (x<=-1 or y<=-1 or x>=length or y>=width):
         return 0
@@ -67,13 +67,13 @@ def spr2(x,y):
         if (imap[y][x] not in container and (imap[y][x]!=2 and imap[y][x]!=1)):
             container.append(imap[y][x])
         return
-<<<<<<< HEAD
-data_input = input("Input your input folder directory: ")
-data_output = input("Input your output folder directory: ")
-=======
-data_input = "./array"
-data_output = "./fixed_array"
->>>>>>> e906a186ebf7471c54fa60a4b2056856306f4f40
+
+#data_input = input("Input your input folder directory: ")
+#data_output = input("Input your output folder directory: ")
+
+data_input = "/home/tsoi/Yours/Projects/SDC/data/array1"
+data_output = "/home/tsoi/Yours/Projects/SDC/data/fixed_array1"
+
 file_direc = os.listdir(data_input)
 
 
