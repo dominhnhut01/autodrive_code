@@ -4,10 +4,9 @@ import os
 import IPython.display as display
 import PIL
 
-in_direc = "/home/tsoi/Yours/Projects/SDC/data/main_dataset/tfrecords/data.tfrecords"
-
-def read_record(directory):
-    raw_data = tf.data.TFRecordDataset(directory)
+def read_record(in_dir):
+    # Read the TFRecord file
+    raw_data = tf.data.TFRecordDataset(in_dir)
     feature_description = {
         'height': tf.io.FixedLenFeature([1],tf.int64),
         'width': tf.io.FixedLenFeature([1],tf.int64),
@@ -26,9 +25,18 @@ def read_record(directory):
         display.display(display.Image(data=image_raw))
         #print(image_raw)
 '''
+Test code:
 for image_features in parsed_image_dataset:
     image_raw = image_features['image_raw'].numpy()
     display.display(display.Image(data=image_raw))
 '''
-
-read_record(in_direc)
+if __name__ == '__main__':
+    
+    #Get the current directory
+    os.chdir('../../../dataset/')
+    main_dir = os.getcwd()
+    in_file = input("Enter input TFRecord file name here: ")
+    
+    #Create absolute path:
+    in_dir = os.path.join(main_dir,in_file)
+    read_record(in_dir)

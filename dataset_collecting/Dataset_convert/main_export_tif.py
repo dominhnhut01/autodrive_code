@@ -2,7 +2,16 @@ from osgeo import gdal, osr
 import os
 import numpy as np
 
-class region_divide:
+class Region_Division:
+'''
+This class is used to hold and generate new coordinate information of the input tif file.
+Param:
+- region_coor: the list of the input region's coordinate in the format [min_x, min_y, max_x, max_y]
+- return_size: the desired size of the smaller output tif file
+Functions:
+- rescale(): rescale the given tif file for later region division
+- divide(): divide the big tif into smaller ones
+'''
     def __init__(self, region_coor, returned_size):
         #Enter the initial region's coordinate and returned size(width in longtitude and height in latitude)
         self.region_coor = region_coor
@@ -10,7 +19,7 @@ class region_divide:
         self.rescaled_region = np.zeros(4)
 
     def rescale(self):
-        #Rescale the region coordinates
+        #Rescale the region coordinates. Add coordinates of new small regions into self.rescaled_region
         self.rescaled_width = ((self.region_coor[2]-self.region_coor[0])//self.returned_size[0])*self.returned_size[0]
         self.rescaled_height = ((self.region_coor[3]-self.region_coor[1])//self.returned_size[1])*self.returned_size[1]
         
@@ -27,7 +36,7 @@ class region_divide:
         self.rescaled_region[3] = self.region_coor[1]+self.rescaled_height
 
     def divide(self):
-        #Divide the initial region's into smaller one. Return a np.array of coordinates of small regions
+        #Divide the initial region's into smaller ones. Return a np.array of coordinates of small regions
         self.rescale()
         column = int(self.rescaled_width//self.returned_size[0]) #number of column
         row = int(self.rescaled_height//self.returned_size[1]) #number of row
@@ -77,7 +86,7 @@ def export_tif(input_dir,output_dir):
         dimension = [436,220]
         
         #Create the list of small GEOTIFF's coordinate
-        region_obj = region_divide(region_coor,dimension)
+        region_obj = Region_Division(region_coor,dimension)
         divided_region = region_obj.divide()
 
         #Export the small GEOTIFF
@@ -142,7 +151,14 @@ def export_tif(input_dir,output_dir):
 
 
 if __name__ == '__main__':
-    input_dir = input("Enter input data directory here: ")
-    output_dir = input("Enter output data directory here: ")
+    #Get the current directory
+    os.chdir('../../../dataset/')
+    main_dir = os.getcwd()
+    in_folder = input("Enter input folder name here: ")
+    out_folder = input("Enter output folder name here: ")
+    
+    #Create absolute path:
+    in_dir = os.path.join(main_dir,in_folder)
+    out_dir = os.path.join(main_dir,out_folder)
     export_tif(input_dir,output_dir)
     print('End of program')

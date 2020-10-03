@@ -4,6 +4,15 @@ import subprocess
 import os
 
 def shp_to_tif(shp_dir,ref_dir,out_dir):
+	'''
+	This function would convert a big shp file to smaller tif files based on the georeference from the reference .tif files.
+	Param:
+	- sh_dir: The directory of the shp file
+	- ref_dir: The directory of the folder of reference .tif files
+	- out_dir: The directory of the folder which contains the output .tif files
+	Return: This function return nothing
+	'''	
+	
 	ref_dir_list = []
 	for filename in os.listdir(ref_dir):
 	    if ".tif" in filename:
@@ -29,6 +38,8 @@ def shp_to_tif(shp_dir,ref_dir,out_dir):
 			# Rasterise
 			print("Rasterising shapefile...")
 			Output = gdal.GetDriverByName(gdalformat).Create(OutputImage, Image.RasterXSize, Image.RasterYSize, 1, datatype, options=['COMPRESS=DEFLATE'])
+			
+			# Transfer the projection and coordinate system information
 			Output.SetProjection(Image.GetProjectionRef())
 			Output.SetGeoTransform(Image.GetGeoTransform())
 
@@ -51,8 +62,18 @@ def shp_to_tif(shp_dir,ref_dir,out_dir):
 			continue
 
 if __name__ == '__main__':
-	shp_dir = input("Enter shp files directory here: ")
-	ref_dir = input("Enter reference geotiff files directory here: ")
-	out_dir = input("Enter output files directory here: ")
+	shp_file = input("Enter shp folder and file here (ex: NYC_citymap/citymap_citymap_v1.shp): ")
+	ref_folder = input("Enter reference geotiff files folder here: ")
+	out_folder = input("Enter output files folder here: ")
+	
+	#Get the current directory
+	os.chdir('../../../dataset/')
+	main_dir = os.getcwd()
+	
+	#Create absolute path:
+	shp_dir = os.path.join(main_dir,shp_file)
+	ref_dir = os.path.join(main_dir,ref_folder)
+	out_dir = os.path.join(main_dir,out_folder)
+
 	shp_to_tif(shp_dir,ref_dir,out_dir)
 	print("Done.")

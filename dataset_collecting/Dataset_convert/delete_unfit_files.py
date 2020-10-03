@@ -26,6 +26,7 @@ def delete(ref_dir,processed_dir):
 	Param:
 	- ref_dir: Directory of the reference folder.
 	- processed_dir: Directory of the folder you want to process.
+	Return: This function return nothing
 	'''
 
 	ref_files = os.listdir(ref_dir)
@@ -42,6 +43,14 @@ def delete(ref_dir,processed_dir):
 				continue
 				
 if __name__ == '__main__':
-	ref_dir = input('Input the directory of your jpg folder: ')
-	processed_dir = input('Input the directory of your npy folder: ')
+
+	#Get the current directory
+	os.chdir('../../../dataset/')
+	main_dir = os.getcwd()
+	ref_folder = input("Enter reference folder name here: ")
+	processed_folder = input("Enter output folder name here: ")
+	
+	#Create absolute path:
+	ref_dir = os.path.join(main_dir,ref_folder)
+	processed_dir = os.path.join(main_dir,processed_folder)
 	delete(ref_dir,processed_dir)
