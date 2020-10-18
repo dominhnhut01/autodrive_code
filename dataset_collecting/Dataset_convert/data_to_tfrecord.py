@@ -35,7 +35,7 @@ def write_record(label,img_string,npy,out_direc,width,height, tfrecord_name):
         'numpy': _int64_feature(npy)
     }
     tf_example = tf.train.Example(features=tf.train.Features(feature=feature))
-    with tf.io.TFRecordWriter(out_direc+"/"+'data'+str(tfrecord_name)+'.tfrecords') as writer:
+    with tf.io.TFRecordWriter(out_direc+"/"+str(tfrecord_name)+'.tfrecords') as writer:
         writer.write(tf_example.SerializeToString())
 
 def serialize_array(array):
@@ -48,10 +48,6 @@ def tfrecord_write_from_folder(in_direc_jpg,in_direc_npy,out_direc):
     file_number = 0
     tfrecord_name = 0
     for jpg in JPGs:
-        file_number = file_number + 1
-        if (file_number >= 1000):
-            tfrecord_name = tfrecord_name + 1
-            file_number = 0
         jpg_direc = in_direc_jpg+"/"+jpg
         img_string = open(jpg_direc,'rb').read()
         image = PIL.Image.open(jpg_direc)
@@ -61,11 +57,11 @@ def tfrecord_write_from_folder(in_direc_jpg,in_direc_npy,out_direc):
         numpy_data= numpy_data.reshape((1,width*height))
         npy = numpy_data[0]
         #npy = numpy_data.tolist()
-        write_record(name,img_string,npy,out_direc,width,height,tfrecord_name)
+        write_record(name,img_string,npy,out_direc,width,height,name)
 
 
-if _name_ == '_main_':
-
+if __name__ == "__main__":
+    '''
     #Get the current directory
     os.chdir('../../../dataset/')
     main_dir = os.getcwd()
@@ -75,10 +71,14 @@ if _name_ == '_main_':
     img_folder = input("Enter img folder name here: ")
     mask_folder = input("Enter npy folder name here: ")
     out_folder = input("Enter output folder + file name here: ")
-
+    '''
     #Create absolute path:
+    '''
     img_dir = os.path.join(main_dir,img_folder)
     mask_dir = os.path.join(main_dir,mask_folder)
     out_dir = os.path.join(main_dir,out_folder)
-
-    tfrecord_write_from_folder(img_dir,mask_dir,out_dir)
+    '''
+    in_direc_jpg = "/home/tsoi/Yours/Projects/SDC/data/main_dataset/satellite_jpg"
+    in_direc_npy = "/home/tsoi/Yours/Projects/SDC/data/main_dataset/street_annotate_npy"
+    out_direc = "/home/tsoi/Yours/Projects/SDC/data/main_dataset/tfrecords"
+    tfrecord_write_from_folder(in_direc_jpg,in_direc_npy,out_direc)
