@@ -61,7 +61,7 @@ def tfrecord_write_from_folder(in_direc_jpg,in_direc_npy,out_direc):
 
 
 if __name__ == "__main__":
-    '''
+    
     #Get the current directory
     os.chdir('../../../dataset/')
     main_dir = os.getcwd()
@@ -77,8 +77,5 @@ if __name__ == "__main__":
     img_dir = os.path.join(main_dir,img_folder)
     mask_dir = os.path.join(main_dir,mask_folder)
     out_dir = os.path.join(main_dir,out_folder)
-    '''
-    in_direc_jpg = "/home/tsoi/Yours/Projects/SDC/data/main_dataset/satellite_jpg"
-    in_direc_npy = "/home/tsoi/Yours/Projects/SDC/data/main_dataset/street_annotate_npy"
-    out_direc = "/home/tsoi/Yours/Projects/SDC/data/main_dataset/tfrecords"
-    tfrecord_write_from_folder(in_direc_jpg,in_direc_npy,out_direc)
+    
+    tfrecord_write_from_folder(img_dir,mask_dir,out_dir)
