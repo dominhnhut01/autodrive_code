@@ -13,7 +13,7 @@ def read_record(in_dir):
         'depth': tf.io.FixedLenFeature([1],tf.int64),
         'label': tf.io.FixedLenFeature([1],tf.int64),
         'image': tf.io.FixedLenFeature((),tf.string),
-        'numpy': tf.io.FixedLenFeature([873,441],tf.int64)
+        'numpy': tf.io.FixedLenFeature([441,873],tf.int64)
     }
     def _parse_image_function(example_proto):
         # Parse the input tf.train.Example proto using the dictionary above.
