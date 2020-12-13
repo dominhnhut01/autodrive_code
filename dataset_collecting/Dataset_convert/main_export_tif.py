@@ -1,23 +1,23 @@
 from osgeo import gdal, osr
 import os
 import numpy as np
+import random
 
 class Region_Division:
-'''
-This class is used to hold and generate new coordinate information of the input tif file.
-Param:
-- region_coor: the list of the input region's coordinate in the format [min_x, min_y, max_x, max_y]
-- return_size: the desired size of the smaller output tif file
-Functions:
-- rescale(): rescale the given tif file for later region division
-- divide(): divide the big tif into smaller ones
-'''
-    def __init__(self, region_coor, returned_size):
+    '''
+    This class is used to hold and generate new coordinate information of the input tif file.
+    Param:
+    - region_coor: the list of the input region's coordinate in the format [min_x, min_y, max_x, max_y]
+    - return_size: the desired size of the smaller output tif file
+    Functions:
+    - rescale(): rescale the given tif file for later region division
+    - divide(): divide the big tif into smaller ones
+    '''
+    def __init__(self, region_coor,returned_size):
         #Enter the initial region's coordinate and returned size(width in longtitude and height in latitude)
         self.region_coor = region_coor
-        self.returned_size = returned_size
         self.rescaled_region = np.zeros(4)
-
+        self.returned_size=returned_size
     def rescale(self):
         #Rescale the region coordinates. Add coordinates of new small regions into self.rescaled_region
         self.rescaled_width = ((self.region_coor[2]-self.region_coor[0])//self.returned_size[0])*self.returned_size[0]
@@ -35,22 +35,36 @@ Functions:
         self.rescaled_region[2] = self.region_coor[0]+self.rescaled_width
         self.rescaled_region[3] = self.region_coor[1]+self.rescaled_height
 
+    def rand_int(self):
+        return int(random.choice((1,2)))
     def divide(self):
         #Divide the initial region's into smaller ones. Return a np.array of coordinates of small regions
         self.rescale()
         column = int(self.rescaled_width//self.returned_size[0]) #number of column
         row = int(self.rescaled_height//self.returned_size[1]) #number of row
         self.divided_region = np.zeros((row*column,4))
-        coor_num = 0
+        coor_num=0
         for y in range(row):
             for x in range(column):
-                self.divided_region[coor_num][0] = self.rescaled_region[0] + self.returned_size[0]*x
-                self.divided_region[coor_num][1] = self.rescaled_region[1] + self.returned_size[1]*y
-                self.divided_region[coor_num][2] = self.rescaled_region[0] + self.returned_size[0]*(x+1)
-                self.divided_region[coor_num][3] = self.rescaled_region[1] + self.returned_size[1]*(y+1)   
+                i = self.rand_int()
+                if i==2:
+                    self.divided_region[coor_num][0] = self.rescaled_region[0] + self.returned_size[0]*x
+                    self.divided_region[coor_num][1] = self.rescaled_region[1] + self.returned_size[1]*y
+                    self.divided_region[coor_num][2] = self.rescaled_region[0] + self.returned_size[0]*(x+1)
+                    self.divided_region[coor_num][3] = self.rescaled_region[1] + self.returned_size[1]*(y+1)   
+                else:
+                    self.divided_region[coor_num][0] = -1
+                    self.divided_region[coor_num][1] = -1
+                    self.divided_region[coor_num][2] = -1
+                    self.divided_region[coor_num][3] = -1
                 print('{} rows {} columns'.format(y+1,x+1))
-                coor_num +=1
+                coor_num+=1
         return self.divided_region
+
+def random_dimension(returned_width_list,returned_height_list):
+    returned_width=int(random.choice(returned_width_list))
+    returned_height=int(random.choice(returned_height_list))
+    return [returned_width,returned_height]
 
 def export_tif(input_dir,output_dir):
 #Export small tiff files from large tiff
@@ -83,68 +97,70 @@ def export_tif(input_dir,output_dir):
         max_y = transform[3]
         
         region_coor = [min_x, min_y, max_x, max_y]
-        dimension = [436,220]
-        
+        returned_width_list=[350,400,430,470,490,530]
+        returned_height_list=[180,200,220,250,270,290,360]
+        returned_size=random_dimension(returned_width_list,returned_height_list)
         #Create the list of small GEOTIFF's coordinate
-        region_obj = Region_Division(region_coor,dimension)
+        region_obj = Region_Division(region_coor,returned_size)
         divided_region = region_obj.divide()
 
         #Export the small GEOTIFF
         for coor in divided_region:
-            try:    
-                p1 = (coor[0], coor[3])
-                p2 = (coor[2], coor[1])
+            if coor[0]!=-1:
+                try:    
+                    p1 = (coor[0], coor[3])
+                    p2 = (coor[2], coor[1])
 
-                xOrigin = transform[0]
-                yOrigin = transform[3]
-                pixelWidth = transform[1]
-                pixelHeight = -transform[5]
-
-
-                i1 = int((p1[0] - xOrigin) / pixelWidth)
-                j1 = int((yOrigin - p1[1] ) / pixelHeight)
-                i2 = int((p2[0] - xOrigin) / pixelWidth)
-                j2 = int((yOrigin - p2[1]) / pixelHeight)
+                    xOrigin = transform[0]
+                    yOrigin = transform[3]
+                    pixelWidth = transform[1]
+                    pixelHeight = -transform[5]
 
 
-                new_cols = i2-i1+1
-                new_rows = j2-j1+1
+                    i1 = int((p1[0] - xOrigin) / pixelWidth)
+                    j1 = int((yOrigin - p1[1] ) / pixelHeight)
+                    i2 = int((p2[0] - xOrigin) / pixelWidth)
+                    j2 = int((yOrigin - p2[1]) / pixelHeight)
 
-                data = band.ReadAsArray(i1, j1, new_cols, new_rows)
 
-                new_x = xOrigin + i1*pixelWidth
-                new_y = yOrigin - j1*pixelHeight
+                    new_cols = i2-i1+1
+                    new_rows = j2-j1+1
 
-                new_transform = (new_x, transform[1], transform[2], new_y, transform[4], transform[5])
+                    data = band.ReadAsArray(i1, j1, new_cols, new_rows)
 
-                # Create gtif file 
-                driver = gdal.GetDriverByName("GTiff")
+                    new_x = xOrigin + i1*pixelWidth
+                    new_y = yOrigin - j1*pixelHeight
 
-                output_file = '{}/NYC_{}.tif'.format(output_dir,num)
+                    new_transform = (new_x, transform[1], transform[2], new_y, transform[4], transform[5])
 
-                dst_ds = driver.Create(output_file, 
-                                       new_cols, 
-                                       new_rows, 
-                                       1, 
-                                       gdal.GDT_Float32)
+                    # Create gtif file 
+                    driver = gdal.GetDriverByName("GTiff")
 
-                #writting output raster
-                dst_ds.GetRasterBand(1).WriteArray( data )
+                    output_file = '{}/NYC_{}.tif'.format(output_dir,num)
 
-                #setting extension of output raster
-                # top left x, w-e pixel resolution, rotation, top left y, rotation, n-s pixel resolution
-                dst_ds.SetGeoTransform(new_transform)
+                    dst_ds = driver.Create(output_file, 
+                                           new_cols, 
+                                           new_rows, 
+                                           1, 
+                                           gdal.GDT_Float32)
 
-                wkt = dataset.GetProjection()
+                    #writting output raster
+                    dst_ds.GetRasterBand(1).WriteArray( data )
 
-                # setting spatial reference of output raster 
-                srs = osr.SpatialReference()
-                srs.ImportFromWkt(wkt)
-                dst_ds.SetProjection( srs.ExportToWkt() )
-                print('Created {} file(s)'.format(num))
-                num+=1
-            except:
-                continue
+                    #setting extension of output raster
+                    # top left x, w-e pixel resolution, rotation, top left y, rotation, n-s pixel resolution
+                    dst_ds.SetGeoTransform(new_transform)
+
+                    wkt = dataset.GetProjection()
+
+                    # setting spatial reference of output raster 
+                    srs = osr.SpatialReference()
+                    srs.ImportFromWkt(wkt)
+                    dst_ds.SetProjection( srs.ExportToWkt() )
+                    print('Created {} file(s)'.format(num))
+                    num+=1
+                except:
+                    continue
         #Close dataset
         dataset = None
         dst_ds = None
@@ -158,7 +174,7 @@ if __name__ == '__main__':
     out_folder = input("Enter output folder name here: ")
     
     #Create absolute path:
-    in_dir = os.path.join(main_dir,in_folder)
-    out_dir = os.path.join(main_dir,out_folder)
+    input_dir = os.path.join(main_dir,in_folder)
+    output_dir = os.path.join(main_dir,out_folder)
     export_tif(input_dir,output_dir)
     print('End of program')

@@ -32,7 +32,7 @@ def delete(ref_dir,processed_dir):
 	ref_files = os.listdir(ref_dir)
 	for i in range(len(ref_files)):
 		temp = ref_files[i]
-		ref_files[i]='NYC_{}.tif'.format(temp[12:-4])
+		ref_files[i]='NYC_{}.png'.format(temp[4:-4])
 	print(ref_files)
 	for npy_file in os.listdir(processed_dir):
 		if npy_file not in ref_files:

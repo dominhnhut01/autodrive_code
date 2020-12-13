@@ -32,7 +32,7 @@ def merge_npy(out_dir):
 	file_num = len(os.listdir(out_dir))
 	fn_pair = []
 	for i in range(int(file_num/2)):
-		st_line = np.load('{}/street_line_NYC_{}.npy'.format(out_dir,i+1))
+		st_line = np.load('{}/streetline_NYC_{}.npy'.format(out_dir,i+1))
 		st_centerline = 2*np.load('{}/street_centerline_NYC_{}.npy'.format(out_dir,i+1))
 		st_data = st_line+st_centerline
 		width,length=st_data.shape
@@ -41,9 +41,9 @@ def merge_npy(out_dir):
 				if st_data[y][x] >2:
 					st_data[y][x]=2
 		
-		np.save('{}/street_data_{}.npy'.format(out_dir,i+1),st_data)
+		np.save('{}/NYC_{}.npy'.format(out_dir,i+1),st_data)
 		
-		os.remove('{}/street_line_NYC_{}.npy'.format(out_dir,i+1))
+		os.remove('{}/streetline_NYC_{}.npy'.format(out_dir,i+1))
 		os.remove('{}/street_centerline_NYC_{}.npy'.format(out_dir,i+1))
 if __name__ == '__main__':
 	#Get the current directory
@@ -60,7 +60,7 @@ if __name__ == '__main__':
 	out_dir = os.path.join(main_dir,out_folder)
 
 
-	tif_to_npy(st_line_dir,st_centerline_dir,out_dir)
+	#tif_to_npy(st_line_dir,st_centerline_dir,out_dir)
 	print('Merging.........................')
 	merge_npy(out_dir)
 	print('Done!')

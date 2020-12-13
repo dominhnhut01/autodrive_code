@@ -37,4 +37,4 @@ if __name__ == '__main__':
 	in_dir = os.path.join(main_dir,in_folder)
 	out_dir = os.path.join(main_dir,out_folder)
 	del_invalid(in_dir,out_dir,points)
-	visualize(points) 
+	#visualize(points) 
