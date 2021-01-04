@@ -39,7 +39,9 @@ Fortunately, the data scientists from Tensorflow developed an easy-to-use model 
 ## Deploying the model on a very basic website using simple Flask, HTML, and Javascript.
 
 We wrote a simple website to deploy this model inside the directory `deployment`. Run the file `main.py` to run it locally. Here is the video demo [link](https://drive.google.com/file/d/1RnO8cb1LGYnjKvDVU5Li9jDJAE1F0lJP/view?usp=sharing).
-Then, we deploy this website to Google Cloud Platform.
 
+## Containerizing the web application and deploy it to Google Cloud Platform:
+
+We use Docker to containerize our program. Finally, we upload it to Google Kubernetes Engine to let it hosted by Google Cloud Platform.
 
 
