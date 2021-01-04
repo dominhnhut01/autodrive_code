@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block head %}
+<style>
+	.input_img_1
+	{
+		position: relative;
+		top: 0;
+		left: 0;
+	}
+	.input_img
+	{
+		position: absolute;
+		top: 0;
+		left: 550px;
+	}
+	.seg_map
+	{
+		position: absolute;
+		top: 0px;
+		left: 550px;
+		opacity: 0.4;
+	}
+</style>
+{%endblock%}
+
+{% block body %}
+<div>
+	<h1>Initialize</h1>
+	<h2><small>Please click on the segmentation result image to choose your desired two points</small></h2>
+	<div style="position: relative; left: 0; top: 0;">	
+			<img src= {{current_img.img_url}} alt="Image" id="input_img_1" class="input_img_1">
+			<img src= {{current_img.img_url}} alt="Image" id="input_img" class="input_img">
+			<img src= {{current_img.seg_map_url}} alt="Segmentation result" id="seg_map" class="seg_map">
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+	<script type="text/javascript">
+		var check = 0
+		var x1
+		var x2
+		var y1
+		var y2
+		$("#seg_map").click(function() {
+			if (check==0) {
+				x1 = event.pageX - $('#seg_map').offset().left;
+				y1 = event.pageY - $('#seg_map').offset().top;
+				alert("First point: X Coordinate: " + x1 + " Y Coordinate: " + y1);
+				check = 1;
+			}
+			else {
+				x2 = event.pageX - $('#seg_map').offset().left;
+				y2 = event.pageY - $('#seg_map').offset().top;
+				alert("Second point: X Coordinate: " + x2 + " Y Coordinate: " + y2);
+				window.location.href = '/add/'+x1+'/'+x2+'/'+y1+'/'+y2+'/'+{{current_img.id}};
+			}
+		});
+	</script>
+	<p>
+		Note: The lighter color-toned area is the area the model predicts as a road
+	<br>
+		For example:
+	</p>
+	<img src="https://storage.googleapis.com/tf1-model/example.JPG" height="200" width="300">
+	<br>
+	<p>
+		If the result has no such area, we apologized that our model did not recognize any road in the image. If so, please upload another image.
+	</p>
+	<button onclick="window.location.href='/upload_file'">Try with another image!</button>
+</div>
+{%endblock%}

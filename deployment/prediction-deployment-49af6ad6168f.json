@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "prediction-deployment",
+  "private_key_id": "49af6ad6168fba73dd529935a93ef61fe1e31edc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDQ8xrhOCoVpmpz\nH786UeecP3eD0Ic8EHdjvZhGF5K7r42YMa3FimTVSNIWBa3lt0yEr4ZZFSd4ExkS\np7OszoZZX875dz8EGehZGfx2CuixQVSoQfVBC5joWO1UfGP9tdlYGANA5l0rIAp7\nQiFeZaFhqwTOaPcMK8Cn6y3QlPq0RJoaW5hQiYDvGXKGzoh8WQranIxAVZKcBezK\nWgbCuRREoaDLf21xYrSnOMSQwemgQIZA1X6gVyecRic6faNBxR6ZuvrGINzhjtfZ\ne7ARFPU7Z8W8buRpBkIg+puXO3Q4znl8tFUtu+M9HSsRA+z5n+x89QoBE+IHloLx\nJhSWrH9VAgMBAAECggEAAlcWr/sPDZsFijCK1b5hF7DmR8WoHhYZIDbZY7+T1yJK\nNbAowBOiuXjNUY3SusXox3unx4ujG4crOrhCHOdbPdkC2mxpekRIA+d0mmXY4VNX\n/WJvusDEf6WvUsjp3ceRnZj3QFzUIk2DkInXEdWVjyB5N06Zpbs/tyG9K57fh/FP\njyBiysIc0leustePlTKqJmv2z2KSa42fqJd0oD08Irh6vaeZkNvBUV+FUKQqOUON\nzj/6UXawT6E6qITrkrt3yZq/v8kuDCmxyCbC8+54DNkuM8RcPgLIbuiRZ9awj2yM\njHi353YNuCrW6Ms0uQChsH7J2qcTO/FUFTYEUg6CwQKBgQD3yAUXCBicAjXrEfIp\nGnHj1g2xtzeCx4P2BbpV/nh7dk0mgTVLiyWzE7oOyzmn/tBrwaT23CFLAjuw7veT\nZIh2/PLyJq+dBzAY1IYz6F8Wygy5NmK7yvyQlgtrmqm3r+zdfxJPsf6pQNHKPke4\npyvdMEmaP5Y0Wl7LOnWiqethHQKBgQDX4Vq3/XzmKWZOEx0YqlyRXRtUIssfIeuR\njG5wAEo7WaAALC0bdiuBiAqtWDLal7/yzhaF3l2zVddwzWoguf8W2JVWj8W198HR\nNZkGCCCZn6mBYZQtXuapR57cI5lFNuGebMxw19SICKfGywWdlD+Am1Nsdod7y7ap\nkxRbk+A5mQKBgQDIyjn1tAXdRp1S5LQMQvXP34IxZXuCaxOwpmudjB0uT2utrD73\n/MaMG4xGuMD8Ni3HZKC9uxzvn9unQb82nd1ILyrguCDPaye6t14ZalDEMu+kl0Hj\nVFbfA/g1NpwZ0mJsC7FXC7KGjZR0A4wzQqT1FVBPwv+BZUoz/iedrXyksQKBgC4z\nssCx5as0rQqEmLOQsmMB9DlbgPFWxx3NWk1qInj1Q4MF8VlxPvpn7TEQMUILPC9w\n3+0inBcnhgZEUDRU2j0/eSafeobpUXe+6tMZpjB6tUJVaesT5nXQODWRANqJVlwb\nmN2Fs5yxjYbEKJ2C/tw9YetSqshZ3uwH6FF5IoHxAoGBAMeSYpOUZNYnGTobiw2Z\nTQXoxR9FskwLUvYrlajeFwXQEjPm2KNX+0CWFcYG3wBGj5vt6IIHoLNWI1pjOgoz\nDoIrclXzK3ny6Cl8aukViVCGIe2rXzAb9Ebrit67OgjUc2t2twEFe6XLGZdZgQLV\nwRQpOs7e5URXaie94cghSwnH\n-----END PRIVATE KEY-----\n",
+  "client_email": "road-prediction@prediction-deployment.iam.gserviceaccount.com",
+  "client_id": "105993631859942193660",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/road-prediction%40prediction-deployment.iam.gserviceaccount.com"
+}

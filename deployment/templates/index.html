@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block head %}
+<h1>Welcome to Road Segmentation model from aeriel images</h1>
+{% endblock %}
+{% block body %}
+<h2>Usage:</h2>
+<p>
+	This model is used for segment the road from the background in the aeriel images. Furthermore, it supports the clients to find the shortest path between two points that was chosen by the clients
+</p>
+<h2>Methodology:</h2>
+<p>
+	This model is used for segment the road from the background in the aeriel images. Furthermore, it supports the clients to find the shortest path between two points that was chosen by the clients
+	We collected 9532 aeriel satellite images of the New York City as the dataset and used the NYC roadmap to label the data for this Deep Learning model. Our model is trained based on DeepLab V3+ model and its pre-trained model on Cityscapes Semantic Segmentation Dataset. Minimal adjustment was done on the initial architecture because this is our first project in Deep Learning. The resulted model achieves a satisfying mIoU accuracy of 0.905 (background), 0.768 (road), and 0.836 (overall). Then, we used the Skimage library to find the shortest path between two chosen points.
+	Finally, we deploy this model on a simple website hosted on Google Cloud Platform. The frontend and backend of this website is kept minimal because our main focus in this project is the Deep Learning model itself.
+</p>
+<h2>Created by:</h2>
+<p>
+	<ul>
+		<li>Nhut Minh Do
+			<br>
+			First year student - Robotics Engineering - Miami University at Ohio '24
+		</li>
+		<li>Phu Nhat Tsoi
+			<br>
+			First year student - Physics - University of California at San Diego '24
+		</li>
+	</ul>
+</p>
+<h2>Reference:</h2>
+<p>@inproceedings{deeplabv3plus2018,
+	<br>
+  title={Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation},
+  <br>
+  author={Liang-Chieh Chen and Yukun Zhu and George Papandreou and Florian Schroff and Hartwig Adam},
+  <br>
+  booktitle={ECCV},
+  <br>
+  year={2018}
+  <br>
+}</p>
+<div>
+	<button onclick="window.location.href='/upload_file'">Go to the model!</button>
+</div>
+{% endblock %}

@@ -36,6 +36,7 @@ class Region_Division:
         self.rescaled_region[3] = self.region_coor[1]+self.rescaled_height
 
     def rand_int(self):
+        #This function is used when we want to limit the number of output TIF under 10,000 images but still made it random
         return int(random.choice((1,2)))
     def divide(self):
         #Divide the initial region's into smaller ones. Return a np.array of coordinates of small regions
@@ -46,17 +47,19 @@ class Region_Division:
         coor_num=0
         for y in range(row):
             for x in range(column):
-                i = self.rand_int()
-                if i==2:
-                    self.divided_region[coor_num][0] = self.rescaled_region[0] + self.returned_size[0]*x
-                    self.divided_region[coor_num][1] = self.rescaled_region[1] + self.returned_size[1]*y
-                    self.divided_region[coor_num][2] = self.rescaled_region[0] + self.returned_size[0]*(x+1)
-                    self.divided_region[coor_num][3] = self.rescaled_region[1] + self.returned_size[1]*(y+1)   
+                #i = self.rand_int()
+                #if i==2:
+                self.divided_region[coor_num][0] = self.rescaled_region[0] + self.returned_size[0]*x
+                self.divided_region[coor_num][1] = self.rescaled_region[1] + self.returned_size[1]*y
+                self.divided_region[coor_num][2] = self.rescaled_region[0] + self.returned_size[0]*(x+1)
+                self.divided_region[coor_num][3] = self.rescaled_region[1] + self.returned_size[1]*(y+1)   
+                '''
                 else:
                     self.divided_region[coor_num][0] = -1
                     self.divided_region[coor_num][1] = -1
                     self.divided_region[coor_num][2] = -1
                     self.divided_region[coor_num][3] = -1
+                '''
                 print('{} rows {} columns'.format(y+1,x+1))
                 coor_num+=1
         return self.divided_region

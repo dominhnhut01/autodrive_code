@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+	.input_img_1
+	{
+		position: relative;
+		top: 0;
+		left: 0;
+	}
+	.input_img
+	{
+		position: absolute;
+		top: 0;
+		left: 550px;
+	}
+	.seg_map
+	{
+		position: absolute;
+		top: 0px;
+		left: 550px;
+		opacity: 0.4;
+	}
+	.shortest_path
+	{
+		position: absolute;
+		top: 0px;
+		left: 550px;
+		opacity: 0.4
+	}
+</style>
+{% endblock %}
+{% block body %}
+<div>
+	<h1>Results</h1>
+</div>
+<div style="position: relative; left: 0; top: 0;">
+		<img src={{current_img.img_url}} alt="Input Image" class="input_img_1">
+		<img src={{current_img.img_url}} alt="Input Image" class="input_img">
+		<img src={{current_img.seg_map_url}} alt="Segmentation result" class="seg_map">
+		<img src={{current_img.shortest_path_url}} alt="Result" class="shortest_path">
+</div>
+<div>
+	<button onclick="window.location.href='/upload_file'">Try on a different images</button>
+</div>
+
+{% endblock %}
