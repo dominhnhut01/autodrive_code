@@ -45,11 +45,18 @@ We wrote a simple website to deploy this model inside the directory `deployment`
 We use Docker to containerize our program. Finally, we upload it to Google Kubernetes Engine to let it hosted by Google Cloud Platform.
 
 #### Created by: 
-*Nhut Minh Do (@dominhnhut01)
+
+- Nhut Minh Do (@dominhnhut01)
 First year student - Robotics Engineering - Miami University at Ohio '24
-*Phu Nhat Tsoi
+- Phu Nhat Tsoi (@PnTsoi)
 First year student - Physics - University of California at San Diego '24
 
-
+#### Reference:
+@inproceedings{deeplabv3plus2018,
+title={Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation},
+author={Liang-Chieh Chen and Yukun Zhu and George Papandreou and Florian Schroff and Hartwig Adam},
+booktitle={ECCV},
+year={2018}
+}
 
 
