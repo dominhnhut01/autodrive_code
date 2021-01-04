@@ -7,7 +7,7 @@ The model is then deployed on a simple website hosted on Google Cloud Platform. 
 1. Collecting and processing the dataset
 2. Training the model using DeepLab V3+
 3. Deploying the model on a very basic website using simple Flask, HTML, and Javascript.
-
+4. Containerizing the web application and deploy it to Google Cloud Platform
 ## Collecting and processing the dataset
 
 For this project, I used the satellite images of New York City I found on the Internet. I have sum up all the high-quality satellite image in this link. Download and unzip it. All the file format JP2, GEOTIF, and Shapefile contains the coordinate data so it's very convenient for future processing
@@ -43,5 +43,13 @@ We wrote a simple website to deploy this model inside the directory `deployment`
 ## Containerizing the web application and deploy it to Google Cloud Platform:
 
 We use Docker to containerize our program. Finally, we upload it to Google Kubernetes Engine to let it hosted by Google Cloud Platform.
+
+#### Created by: 
+*Nhut Minh Do (@dominhnhut01)
+First year student - Robotics Engineering - Miami University at Ohio '24
+*Phu Nhat Tsoi
+First year student - Physics - University of California at San Diego '24
+
+
 
 
