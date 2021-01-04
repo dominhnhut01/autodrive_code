@@ -34,7 +34,7 @@ First, we move the satellite images to `road_segmentation_model\models\research\
 
 ## Training the model using DeepLab V3+:
 
-Fortunately, the data scientists from Tensorflow developed an easy-to-use model so it's very easy to train. We only need to run the code `road_segmentation_model\models\research\train.bat` we wrote to train. Feel free to modified it to fit your need.
+Fortunately, the data scientists from Tensorflow developed an easy-to-use model so it's very easy to train. We only need to run the code `road_segmentation_model\models\research\train.bat` we wrote to train. These batch files only work for Window so you need to write other similar Shell files if you are using Ubuntu. And feel free to modified it to fit your need.
 
 ## Deploying the model on a very basic website using simple Flask, HTML, and Javascript.
 
