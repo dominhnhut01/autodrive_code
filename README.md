@@ -42,7 +42,7 @@ We wrote a simple website to deploy this model inside the directory `deployment`
 
 ## Containerizing the web application and deploy it to Google Cloud Platform:
 
-We use Docker to containerize our program. Finally, we upload it to Google Kubernetes Engine to let it hosted by Google Cloud Platform.
+We use Docker to containerize our program. Finally, we upload it to Google Container Registry and host it by Google Kubernetes Engine on Google Cloud Platform. Here is the link of the website: [Road Segmentation model link](http://34.101.141.154:5000/)
 
 #### Created by: 
 
