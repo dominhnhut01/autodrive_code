@@ -34,7 +34,12 @@ First, we move the satellite images to `road_segmentation_model\models\research\
 
 ## Training the model using DeepLab V3+:
 
-Fortunately, the data scientists from Tensorflow developed an easy-to-use model so it's very easy to train. We only need to run the code `road_segmentation_model\models\research\train.bat` we wrote to train. These batch files only work for Window so you need to write other similar Shell files if you are using Ubuntu. And feel free to modified it to fit your need.
+Fortunately, the data scientists from Tensorflow developed an easy-to-use model so it's very easy to train. We only need to run the code `road_segmentation_model\models\research\train.bat` we wrote to train. These batch files only work for Window so you need to write other similar Shell files if you are using Ubuntu. And feel free to modified it to fit your need. To understand more about the training problem, please read this Github repository from @heaversm [link](https://github.com/heaversm/deeplab-training). His instruction is very straight-forward even to beginners.
+
+After completing your training, the resulted model should achieve the approximate mIoU accuracy of 0.905 (background), 0.768 (road), and 0.836 (overall).
+Run `road_segmentation_model\models\research\export_model.bat` to export the model to .pb file. This single file will be much more lightweight than the previous trained checkpoint. Then copy it to `deployment\trained_model`, compress it twice until it has a format of `.tar.gz`.
+
+That's done of training! Now we will deploy it on a simple web application.
 
 ## Deploying the model on a very basic website using simple Flask, HTML, and Javascript.
 
@@ -58,5 +63,6 @@ author={Liang-Chieh Chen and Yukun Zhu and George Papandreou and Florian Schroff
 booktitle={ECCV},
 year={2018}
 }
+https://github.com/heaversm/deeplab-training
 
 
