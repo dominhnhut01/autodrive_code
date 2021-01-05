@@ -11,7 +11,8 @@
 <p>
 	This model is used for segment the road from the background in the aeriel images. Furthermore, it supports the clients to find the shortest path between two points that was chosen by the clients
 	We collected 9532 aeriel satellite images of the New York City as the dataset and used the NYC roadmap to label the data for this Deep Learning model. Our model is trained based on DeepLab V3+ model and its pre-trained model on Cityscapes Semantic Segmentation Dataset. Minimal adjustment was done on the initial architecture because this is our first project in Deep Learning. The resulted model achieves a satisfying mIoU accuracy of 0.905 (background), 0.768 (road), and 0.836 (overall). Then, we used the Skimage library to find the shortest path between two chosen points.
-	Finally, we deploy this model on a simple website hosted on Google Cloud Platform. The frontend and backend of this website is kept minimal because our main focus in this project is the Deep Learning model itself.
+	Finally, we deployed this model on a simple website hosted on Google Cloud Platform. The frontend and backend of this website is kept minimal because our main focus in this project is the Deep Learning model itself.
+	You can view the video demo here: <a href="https://drive.google.com/file/d/1RnO8cb1LGYnjKvDVU5Li9jDJAE1F0lJP/view?usp=sharing">Link</a>
 </p>
 <h2>Created by:</h2>
 <p>
@@ -37,7 +38,10 @@
   <br>
   year={2018}
   <br>
-}</p>
+}
+</p>
+<h2>Github:</h2>
+<p>Please visit out github repository for more information: <a href="https://github.com/dominhnhut01/autodrive_code">Our github repository</a></p>
 <div>
 	<button onclick="window.location.href='/upload_file'">Go to the model!</button>
 </div>
