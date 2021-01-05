@@ -7,7 +7,7 @@ The model is then deployed on a simple website hosted on Google Cloud Platform. 
 1. Collecting and processing the dataset
 2. Training the model using DeepLab V3+
 3. Deploying the model on a very basic website using simple Flask, HTML, and Javascript.
-
+4. Containerizing the web application and deploy it to Google Cloud Platform
 ## Collecting and processing the dataset
 
 For this project, I used the satellite images of New York City I found on the Internet. I have sum up all the high-quality satellite image in this link. Download and unzip it. All the file format JP2, GEOTIF, and Shapefile contains the coordinate data so it's very convenient for future processing
@@ -34,12 +34,29 @@ First, we move the satellite images to `road_segmentation_model\models\research\
 
 ## Training the model using DeepLab V3+:
 
-Fortunately, the data scientists from Tensorflow developed an easy-to-use model so it's very easy to train. We only need to run the code `road_segmentation_model\models\research\train.bat` we wrote to train. Feel free to modified it to fit your need.
+Fortunately, the data scientists from Tensorflow developed an easy-to-use model so it's very easy to train. We only need to run the code `road_segmentation_model\models\research\train.bat` we wrote to train. These batch files only work for Window so you need to write other similar Shell files if you are using Ubuntu. And feel free to modified it to fit your need.
 
 ## Deploying the model on a very basic website using simple Flask, HTML, and Javascript.
 
 We wrote a simple website to deploy this model inside the directory `deployment`. Run the file `main.py` to run it locally. Here is the video demo [link](https://drive.google.com/file/d/1RnO8cb1LGYnjKvDVU5Li9jDJAE1F0lJP/view?usp=sharing).
-Then, we deploy this website to Google Cloud Platform.
 
+## Containerizing the web application and deploy it to Google Cloud Platform:
+
+We use Docker to containerize our program. Finally, we upload it to Google Kubernetes Engine to let it hosted by Google Cloud Platform.
+
+#### Created by: 
+
+- Nhut Minh Do (@dominhnhut01)
+First year student - Robotics Engineering - Miami University at Ohio '24
+- Phu Nhat Tsoi (@PnTsoi)
+First year student - Physics - University of California at San Diego '24
+
+#### Reference:
+@inproceedings{deeplabv3plus2018,
+title={Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation},
+author={Liang-Chieh Chen and Yukun Zhu and George Papandreou and Florian Schroff and Hartwig Adam},
+booktitle={ECCV},
+year={2018}
+}
 
 
