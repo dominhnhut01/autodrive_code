@@ -1,6 +1,10 @@
 # Segmentation of Roads from Satellite images
 
-Semantic segmentation is the process of classifying each pixel belonging to a particular label. Specifically, in this project, we will identify which region of the satellite image belongs to the road using Deep Learning. Our model is trained based on DeepLab V3+ model and its pre-trained model on Cityscapes Semantic Segmentation Dataset. Minimal adjustment was done on the initial architecture. The resulted model achieves a satisfying mIoU accuracy of 0.905 (background), 0.768 (road), and 0.836 (overall).
+Semantic segmentation is the process of classifying each pixel belonging to a particular label. Specifically, in this project, we will identify which region of the satellite image belongs to the road using Deep Learning. 
+
+This project is originally based on the original idea of the following system. A drone will record real-time aerial videos of an unknown area. This video will be sent to a car which will automatically find the best way to go to a specific location of that area. However, we have not had enough knowledge yet to achieve that idea, so we broke it up into a smaller version which is this project. 
+
+Our model is trained based on DeepLab V3+ model and its pre-trained model on Cityscapes Semantic Segmentation Dataset. Minimal adjustment was done on the initial architecture. The resulted model achieves a satisfying mIoU accuracy of 0.905 (background), 0.768 (road), and 0.836 (overall).
 The model is then deployed on a simple website hosted on Google Cloud Platform. The frontend and backend of this website is kept minimal because our main focus in this project is the Deep Learning model itself.
 
 ## Content:
@@ -10,11 +14,11 @@ The model is then deployed on a simple website hosted on Google Cloud Platform. 
 4. Containerizing the web application and deploy it to Google Cloud Platform
 ## Collecting and processing the dataset
 
-For this project, I used the satellite images of New York City I found on the Internet. I have sum up all the high-quality satellite image in this link. Download and unzip it. All the file format JP2, GEOTIF, and Shapefile contains the coordinate data so it's very convenient for future processing
+For this project, we used the satellite images of New York City we crawled on the Internet. I have summed up all the high-quality satellite image in this link. Download and unzip it. All the file format JP2, GEOTIF, and Shapefile contains the coordinate data so it's very convenient for future processing.
 
 ### The satellite images
 Most of them comes with the format JP2, GEOTIF and their sizes are too large for training. So we need to process the data by cropping them into smaller image and converting them to PNG. First, we need to convert all the JP2 images to GEOTIF by running the Python code at `dataset_collecting\data_convert\jp2_to_tif.py`. 
-Then, we need to cutting the large GEOTIF into smaller images without losing any coordinate data (we need this data later to synchronize the image with the road map to create the label). We use the Python code at `dataset_collecting\data_convert\main_export_tif.py`. Finally, we run `dataset_collecting\data_convert\tif_to_jpg.py` and `dataset_collecting\data_convert\2D_to_3D.py` respectively (remember to keep the GEOTIF files for future processing).
+Then, we need to cutting the large GEOTIF into smaller images without losing any coordinate data (we need this data later to synchronize the image with the road map to create the label). We use the Python code at `dataset_collecting\data_convert\main_export_tif.py`. Finally, we run `dataset_collecting\data_convert\tif_to_jpg.py` and `dataset_collecting\data_convert\2D_to_3D.py` respectively (remember to keep the GEOTIF files for future processing). This code will produce images with different shape in order to prevent the overfitting of the resulted model.
 
 ### The label
 We will create the label based on the road map data that New York City published on the Internet. It is also included on the above zip file. However, the available data is only the street line and the street center line, but not the mask for the road. Therefore, we will create the mask by ourselves.
