@@ -72,6 +72,8 @@ author={Liang-Chieh Chen and Yukun Zhu and George Papandreou and Florian Schroff
 booktitle={ECCV},
 year={2018}
 }
-https://github.com/heaversm/deeplab-training
+Jerin Paul, Skeyenet - Read Our Planet Like a Book, (2020), GitHub repository,
+https://github.com/Paulymorphous/skeyenet
+
 
 
