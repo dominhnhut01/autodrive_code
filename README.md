@@ -8,9 +8,9 @@ Our model is trained based on DeepLab V3+ model and its pre-trained model on Cit
 The model is then deployed on a simple website hosted on Google Cloud Platform. The frontend and backend of this website is kept minimal because our main focus in this project is the Deep Learning model itself.
 
 Here is some result images of our deployed model on out-of-dataset input images:
-[Image 1](https://raw.githubusercontent.com/dominhnhut01/autodrive_code/master/result1.JPG)
-[Image 2](https://raw.githubusercontent.com/dominhnhut01/autodrive_code/master/result2.JPG)
-[Image 3](https://raw.githubusercontent.com/dominhnhut01/autodrive_code/master/result3.JPG)
+![Image 1](https://raw.githubusercontent.com/dominhnhut01/autodrive_code/master/result1.JPG)
+![Image 2](https://raw.githubusercontent.com/dominhnhut01/autodrive_code/master/result2.JPG)
+![Image 3](https://raw.githubusercontent.com/dominhnhut01/autodrive_code/master/result3.JPG)
 
 ## Content:
 1. Collecting and processing the dataset
