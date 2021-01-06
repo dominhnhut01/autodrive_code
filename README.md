@@ -7,6 +7,11 @@ This project is originally based on the original idea of the following system. A
 Our model is trained based on DeepLab V3+ model and its pre-trained model on Cityscapes Semantic Segmentation Dataset. Minimal adjustment was done on the initial architecture. The resulted model achieves a satisfying mIoU accuracy of 0.905 (background), 0.768 (road), and 0.836 (overall).
 The model is then deployed on a simple website hosted on Google Cloud Platform. The frontend and backend of this website is kept minimal because our main focus in this project is the Deep Learning model itself.
 
+Here is some result images of our deployed model on out-of-dataset input images:
+[Image 1](https://raw.githubusercontent.com/dominhnhut01/autodrive_code/master/result1.JPG)
+[Image 2](https://raw.githubusercontent.com/dominhnhut01/autodrive_code/master/result2.JPG)
+[Image 3](https://raw.githubusercontent.com/dominhnhut01/autodrive_code/master/result3.JPG)
+
 ## Content:
 1. Collecting and processing the dataset
 2. Training the model using DeepLab V3+
