@@ -4,7 +4,7 @@ Semantic segmentation is the process of classifying each pixel belonging to a pa
 
 This project is originally based on the original idea of the following system. A drone will record real-time aerial videos of an unknown area. This video will be sent to a car which will automatically find the best way to go to a specific location of that area. However, we have not had enough knowledge yet to achieve that idea, so we broke it up into a smaller version which is this project. 
 
-Our model is trained based on DeepLab V3+ model and its pre-trained model on Cityscapes Semantic Segmentation Dataset. Minimal adjustment was done on the initial architecture. The resulted model achieves a satisfying mIoU accuracy of 0.905 (background), 0.768 (road), and 0.836 (overall).
+Our model is trained based on DeepLab V3+ model and its pre-trained model on Cityscapes Semantic Segmentation Dataset. The training dataset is 8579 satellite images of New York City. Minimal adjustment was done on the initial architecture. The resulted model achieves a satisfying mIoU accuracy of 0.905 (background), 0.768 (road), and 0.836 (overall).
 The model is then deployed on a simple website hosted on Google Cloud Platform. The frontend and backend of this website is kept minimal because our main focus in this project is the Deep Learning model itself.
 
 Here is some result images of our deployed model on out-of-dataset input images:
