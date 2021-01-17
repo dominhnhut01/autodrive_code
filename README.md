@@ -1,4 +1,4 @@
-# Segmentation of Roads from Satellite images
+# Segmentation of Roads from Satellite Images
 
 Semantic segmentation is the process of classifying each pixel belonging to a particular label. Specifically, in this project, we will identify which region of the satellite image belongs to the road using Deep Learning. 
 
