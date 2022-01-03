@@ -52,7 +52,7 @@ That's done of training! Now we will deploy it on a simple web application.
 
 ## Deploying the model on a very basic website using simple Flask, HTML, and Javascript.
 
-We wrote a simple website to deploy this model inside the directory `deployment`. Run the file `main.py` to run it locally. Here is the video demo [link](https://drive.google.com/file/d/1RnO8cb1LGYnjKvDVU5Li9jDJAE1F0lJP/view?usp=sharing).
+We wrote a simple website to deploy this model inside the directory `deployment`. Run the file `main.py` to run it locally. Here is the video demo [link](https://drive.google.com/file/d/168F6VHdxVVyTpg2KmvsgBwGGv4GqYCk1/view).
 
 ## Containerizing the web application and deploy it to Google Cloud Platform:
 
